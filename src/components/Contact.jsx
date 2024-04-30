@@ -1,44 +1,47 @@
-import React from 'react';
-import Title from './Title';
+import React, { useState } from "react";
+import Title from "./Title";
 
 function Contact() {
-   return (
-      <div className="flex flex-col mb-10 mx-auto">
-         <div className="flex justify-center items-center">
-            <form
-               action="https://getform.io/f/(customSlugHere)"
-               method="POST"
-               className="flex flex-col w-full md:w-7/12"
-            >
-               <Title>Contact</Title>
-               <input
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  className="p-2 bg-transparent border-2 rounded-md focus:outline-none"
-               />
-               <input
-                  type="text"
-                  name="email"
-                  placeholder="Email"
-                  className="my-2 p-2 bg-transparent border-2 rounded-md focus:outline-none"
-               />
-               <textarea
-                  name="message"
-                  placeholder="Message"
-                  rows="10"
-                  className="p-2 mb-4 bg-transparent border-2 rounded-md focus:outline-none"
-               />
-               <button
-                  type="button"
-                  className="text-center inline-block px-8 py-3 w-max text-base font-medium rounded-md text-white bg-gradient-to-r from-yellow-500 to-pink-500 drop-shadow-md hover:stroke-white"
-               >
-                  Work With Me
-               </button>
-            </form>
-         </div>
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const mailtoLink = `mailto:tdanguyen19@gmail.com?subject=${encodeURIComponent(
+    subject
+  )}&body=${encodeURIComponent(message)}`;
+  return (
+    <div className="mx-auto mb-10 flex flex-col">
+      <div className="flex items-center justify-center">
+        <form
+          action="https://getform.io/f/(customSlugHere)"
+          method="POST"
+          className="flex w-full flex-col md:w-7/12"
+        >
+          <Title>Contact</Title>
+          <input
+            type="text"
+            name="subject"
+            placeholder="Subject"
+            className="my-2 rounded-md border-2 bg-transparent p-2 focus:outline-none"
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+          />
+          <textarea
+            name="message"
+            placeholder="Message"
+            rows="10"
+            className="mb-4 rounded-md border-2 bg-transparent p-2 focus:outline-none"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+          <button
+            type="button"
+            className="inline-block w-max rounded-md bg-gradient-to-r from-yellow-500 to-pink-500 px-8 py-3 text-center text-base font-medium text-white drop-shadow-md hover:stroke-white"
+          >
+            <a href={mailtoLink}>Work With Me</a>
+          </button>
+        </form>
       </div>
-   )
+    </div>
+  );
 }
 
 export default Contact;
