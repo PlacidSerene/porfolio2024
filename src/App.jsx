@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import Intro from "./components/Intro";
 import Portfolio from "./components/Portfolio";
 import Timeline from "./components/Timeline";
-
+import resume from "./data/Dung_Nguyen_CV24.pdf";
 function App() {
   const [theme, setTheme] = useState(null);
 
@@ -95,13 +95,12 @@ function App() {
         >
           {theme === "dark" ? sun : moon}
         </button>
-        <button
-          type="button"
-          onClick={handleThemeSwitch}
+        <a
+          href={resume}
           className=" rounded-md bg-violet-300 p-2 text-lg dark:bg-orange-300"
         >
           {file}
-        </button>
+        </a>
       </div>
       <div className="min-h-screen bg-white font-inter text-stone-900 dark:bg-stone-900 dark:text-stone-300">
         <div className="mx-auto w-11/12 max-w-5xl">
